@@ -1,0 +1,1087 @@
+
+                      Design Compiler Graphical
+                            DC Ultra (TM)
+                             DFTMAX (TM)
+                         Power Compiler (TM)
+                           DesignWare (R)
+                           DC Expert (TM)
+                         Design Vision (TM)
+                          HDL Compiler (TM)
+                         VHDL Compiler (TM)
+                            DFT Compiler
+                        Library Compiler (TM)
+                         Design Compiler(R)
+
+         Version J-2014.09-SP5-2 for RHEL64 -- Jul 11, 2015
+               Copyright (c) 1988-2015 Synopsys, Inc.
+
+This software and the associated documentation are confidential and 
+proprietary to Synopsys, Inc. Your use or disclosure of this software 
+is subject to the terms and conditions of a written license agreement 
+between you, or your company, and Synopsys, Inc.
+
+Initializing...
+##############################################
+# Setup: fill out the following parameters: name of clock signal, clock period (ns),
+# reset signal name (if used), name of top-level module, name of source file
+set CLK_NAME "clk";
+clk
+set CLK_PERIOD 1.27;
+1.27
+set RST_NAME "reset";
+reset
+set TOP_MOD_NAME "fc_16_8_16_1_8";
+fc_16_8_16_1_8
+#set SRC_FILE [list "fc_8_6_16_1_1.sv" "controlFSM.sv" "datapath.sv" "memory.sv"];
+set SRC_FILE "fc_16_8_16_1_8.sv";
+fc_16_8_16_1_8.sv
+# If you have multiple source files, change the line above to list them all like this:
+# set SRC_FILE [list "file1.sv" "file2.sv"];
+###############################################
+source setupdc.tcl
+NangateOpenCellLibrary_typical.db dw_foundation.sldb
+file mkdir work_synth
+define_design_lib WORK -path work_synth
+1
+analyze $SRC_FILE -format sverilog
+Running PRESTO HDLC
+Searching for ./fc_16_8_16_1_8.sv
+Compiling source file ./fc_16_8_16_1_8.sv
+Opening include file controlFSM.sv
+Opening include file datapath.sv
+Opening include file memory.sv
+Presto compilation completed successfully.
+Loading db file '/home/home4/pmilder/ese507/synthesis/lib/NangateOpenCellLibrary_typical.db'
+Loading db file '/usr/local/synopsys/syn/libraries/syn/dw_foundation.sldb'
+1
+elaborate -work WORK $TOP_MOD_NAME
+Loading db file '/usr/local/synopsys/syn/libraries/syn/gtech.db'
+Loading db file '/usr/local/synopsys/syn/libraries/syn/standard.sldb'
+  Loading link library 'NangateOpenCellLibrary'
+  Loading link library 'gtech'
+Running PRESTO HDLC
+Presto compilation completed successfully.
+Elaborated 1 design.
+Current design is now 'fc_16_8_16_1_8'.
+Information: Building the design 'controlFSM' instantiated from design 'fc_16_8_16_1_8' with
+	the parameters "16,8,8". (HDL-193)
+Warning:  controlFSM.sv:159: signed to unsigned conversion occurs. (VER-318)
+Warning:  controlFSM.sv:176: signed to unsigned conversion occurs. (VER-318)
+Warning:  controlFSM.sv:184: signed to unsigned conversion occurs. (VER-318)
+
+Statistics for case statements in always block at line 55 in file
+	'controlFSM.sv'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|            56            |    auto/auto     |
+===============================================
+
+Inferred memory devices in process
+	in routine controlFSM_M16_N8_P8 line 46 in file
+		'controlFSM.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|  currentState_reg   | Flip-flop |   2   |  Y  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine controlFSM_M16_N8_P8 line 128 in file
+		'controlFSM.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+| out_index_count_reg | Flip-flop |   8   |  Y  | N  | N  | N  | N  | N  | N  |
+|    countLoad_reg    | Flip-flop |   4   |  Y  | N  | N  | N  | N  | N  | N  |
+|    countComp_reg    | Flip-flop |   8   |  Y  | N  | N  | N  | N  | N  | N  |
+|    countVec_reg     | Flip-flop |   3   |  Y  | N  | N  | N  | N  | N  | N  |
+|    countToN_reg     | Flip-flop |   3   |  Y  | N  | N  | N  | N  | N  | N  |
+|    countToP_reg     | Flip-flop |   3   |  Y  | N  | N  | N  | N  | N  | N  |
+|     en_acc_reg      | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|    clear_acc_reg    | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|  output_valid_reg   | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|  iterationDone_reg  | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|      temp_reg       | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully.
+Information: Building the design 'memory' instantiated from design 'fc_16_8_16_1_8' with
+	the parameters "16,8". (HDL-193)
+
+Inferred memory devices in process
+	in routine memory_WIDTH16_SIZE8 line 14 in file
+		'memory.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|    data_out_reg     | Flip-flop |  16   |  Y  | N  | N  | N  | N  | N  | N  |
+|       mem_reg       | Flip-flop |  16   |  Y  | N  | N  | N  | N  | N  | N  |
+|       mem_reg       | Flip-flop |  16   |  Y  | N  | N  | N  | N  | N  | N  |
+|       mem_reg       | Flip-flop |  16   |  Y  | N  | N  | N  | N  | N  | N  |
+|       mem_reg       | Flip-flop |  16   |  Y  | N  | N  | N  | N  | N  | N  |
+|       mem_reg       | Flip-flop |  16   |  Y  | N  | N  | N  | N  | N  | N  |
+|       mem_reg       | Flip-flop |  16   |  Y  | N  | N  | N  | N  | N  | N  |
+|       mem_reg       | Flip-flop |  16   |  Y  | N  | N  | N  | N  | N  | N  |
+|       mem_reg       | Flip-flop |  16   |  Y  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+Statistics for MUX_OPs
+==================================================================
+|    block name/line      | Inputs | Outputs | # sel inputs | MB |
+==================================================================
+| memory_WIDTH16_SIZE8/15 |   8    |   16    |      3       | N  |
+==================================================================
+Presto compilation completed successfully.
+Information: Building the design 'mux' instantiated from design 'fc_16_8_16_1_8' with
+	the parameters "16,8". (HDL-193)
+Warning:  ./fc_16_8_16_1_8.sv:133: signed to unsigned part selection occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:135: signed to unsigned conversion occurs. (VER-318)
+Presto compilation completed successfully.
+Information: Building the design 'datapath' instantiated from design 'fc_16_8_16_1_8' with
+	the parameters "16,1". (HDL-193)
+
+Inferred memory devices in process
+	in routine datapath_WIDTH16_R1 line 34 in file
+		'datapath.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|   output_data_reg   | Flip-flop |  16   |  Y  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine datapath_WIDTH16_R1 line 62 in file
+		'datapath.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     result_reg      | Flip-flop |  17   |  Y  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully.
+Information: Building the design 'fc_16_8_16_1_8_W_rom'. (HDL-193)
+Warning:  ./fc_16_8_16_1_8.sv:167: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:169: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:170: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:172: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:173: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:174: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:175: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:178: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:179: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:182: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:183: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:184: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:185: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:189: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:193: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:194: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:195: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:196: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:197: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:198: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:204: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:206: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:208: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:210: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:211: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:212: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:215: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:220: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:222: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:226: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:228: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:231: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:234: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:236: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:237: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:241: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:242: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:246: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:249: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:259: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:260: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:262: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:264: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:265: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:269: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:270: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:278: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:279: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:282: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:291: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:292: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:297: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:299: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:300: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:302: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:303: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:304: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:305: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:308: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:309: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:312: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:313: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:314: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:315: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:319: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:323: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:324: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:325: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:326: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:327: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:328: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:334: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:336: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:338: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:340: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:341: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:342: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:345: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:350: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:352: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:356: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:358: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:361: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:364: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:366: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:367: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:371: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:372: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:376: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:379: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:389: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:390: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:392: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:394: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:395: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:399: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:400: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:408: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:409: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:412: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:421: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:422: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:427: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:429: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:430: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:432: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:433: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:434: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:435: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:438: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:439: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:442: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:443: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:444: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:445: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:449: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:453: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:454: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:455: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:456: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:457: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:458: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:464: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:466: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:468: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:470: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:471: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:472: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:475: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:480: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:482: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:486: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:488: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:491: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:494: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:496: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:497: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:501: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:502: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:506: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:509: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:519: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:520: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:522: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:524: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:525: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:529: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:530: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:538: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:539: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:542: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:551: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:552: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:557: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:559: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:560: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:562: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:563: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:564: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:565: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:568: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:569: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:572: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:573: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:574: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:575: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:579: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:583: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:584: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:585: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:586: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:587: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:588: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:594: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:596: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:598: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:600: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:601: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:602: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:605: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:610: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:612: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:616: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:618: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:621: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:624: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:626: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:627: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:631: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:632: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:636: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:639: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:649: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:650: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:652: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:654: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:655: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:659: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:660: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:668: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:669: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:672: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:681: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:682: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:687: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:689: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:690: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:692: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:693: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:694: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:695: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:698: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:699: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:702: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:703: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:704: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:705: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:709: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:713: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:714: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:715: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:716: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:717: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:718: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:724: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:726: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:728: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:730: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:731: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:732: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:735: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:740: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:742: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:746: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:748: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:751: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:754: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:756: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:757: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:761: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:762: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:766: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:769: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:779: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:780: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:782: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:784: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:785: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:789: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:790: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:798: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:799: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:802: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:811: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:812: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:817: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:819: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:820: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:822: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:823: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:824: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:825: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:828: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:829: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:832: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:833: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:834: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:835: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:839: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:843: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:844: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:845: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:846: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:847: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:848: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:854: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:856: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:858: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:860: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:861: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:862: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:865: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:870: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:872: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:876: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:878: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:881: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:884: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:886: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:887: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:891: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:892: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:896: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:899: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:909: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:910: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:912: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:914: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:915: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:919: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:920: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:928: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:929: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:932: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:941: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:942: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:947: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:949: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:950: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:952: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:953: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:954: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:955: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:958: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:959: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:962: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:963: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:964: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:965: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:969: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:973: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:974: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:975: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:976: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:977: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:978: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:984: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:986: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:988: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:990: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:991: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:992: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:995: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1000: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1002: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1006: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1008: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1011: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1014: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1016: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1017: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1021: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1022: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1026: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1029: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1039: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1040: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1042: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1044: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1045: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1049: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1050: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1058: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1059: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1062: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1071: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1072: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1077: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1079: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1080: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1082: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1083: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1084: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1085: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1088: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1089: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1092: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1093: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1094: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1095: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1099: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1103: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1104: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1105: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1106: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1107: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1108: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1114: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1116: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1118: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1120: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1121: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1122: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1125: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1130: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1132: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1136: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1138: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1141: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1144: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1146: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1147: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1151: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1152: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1156: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1159: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1169: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1170: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1172: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1174: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1175: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1179: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1180: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1188: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1189: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1192: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1201: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./fc_16_8_16_1_8.sv:1202: unsigned to signed assignment occurs. (VER-318)
+
+Statistics for case statements in always block at line 163 in file
+	'./fc_16_8_16_1_8.sv'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|           164            |    auto/auto     |
+|           294            |    auto/auto     |
+|           424            |    auto/auto     |
+|           554            |    auto/auto     |
+|           684            |    auto/auto     |
+|           814            |    auto/auto     |
+|           944            |    auto/auto     |
+|           1074           |    auto/auto     |
+===============================================
+
+Inferred memory devices in process
+	in routine fc_16_8_16_1_8_W_rom line 163 in file
+		'./fc_16_8_16_1_8.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|       z0_reg        | Flip-flop |  16   |  Y  | N  | N  | N  | N  | N  | N  |
+|       z1_reg        | Flip-flop |  16   |  Y  | N  | N  | N  | N  | N  | N  |
+|       z2_reg        | Flip-flop |  16   |  Y  | N  | N  | N  | N  | N  | N  |
+|       z3_reg        | Flip-flop |  16   |  Y  | N  | N  | N  | N  | N  | N  |
+|       z4_reg        | Flip-flop |  16   |  Y  | N  | N  | N  | N  | N  | N  |
+|       z5_reg        | Flip-flop |  16   |  Y  | N  | N  | N  | N  | N  | N  |
+|       z6_reg        | Flip-flop |  16   |  Y  | N  | N  | N  | N  | N  | N  |
+|       z7_reg        | Flip-flop |  16   |  Y  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully.
+1
+###### CLOCKS AND PORTS #######
+set CLK_PORT [get_ports $CLK_NAME]
+{clk}
+set TMP1 [remove_from_collection [all_inputs] $CLK_PORT]
+{reset input_valid input_data[15] input_data[14] input_data[13] input_data[12] input_data[11] input_data[10] input_data[9] input_data[8] input_data[7] input_data[6] input_data[5] input_data[4] input_data[3] input_data[2] input_data[1] input_data[0] output_ready}
+set INPUTS [remove_from_collection $TMP1 $RST_NAME]
+{input_valid input_data[15] input_data[14] input_data[13] input_data[12] input_data[11] input_data[10] input_data[9] input_data[8] input_data[7] input_data[6] input_data[5] input_data[4] input_data[3] input_data[2] input_data[1] input_data[0] output_ready}
+create_clock -period $CLK_PERIOD [get_ports clk]
+1
+# set delay for inputs to be 0.2ns
+set_input_delay 0.2 -max -clock clk $INPUTS
+1
+set_output_delay 0.2 -max -clock clk [all_outputs]
+1
+###### OPTIMIZATION #######
+set_max_area 0 
+1
+###### RUN #####
+compile_ultra
+Information: Performing power optimization. (PWR-850)
+Alib files are up-to-date.
+Information: Evaluating DesignWare library utilization. (UISN-27)
+
+============================================================================
+| DesignWare Building Block Library  |         Version         | Available |
+============================================================================
+| Basic DW Building Blocks           | J-2014.09-DWBB_201409.5.2 |   *     |
+| Licensed DW Building Blocks        | J-2014.09-DWBB_201409.5.2 |   *     |
+============================================================================
+
+Information: Sequential output inversion is enabled.  SVF file must be used for formal verification. (OPT-1208)
+
+Information: There are 10 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
+
+
+Loaded alib file './alib-52/NangateOpenCellLibrary_typical.db.alib'
+  Building model 'DW01_NAND2'
+Information: Ungrouping hierarchy controlMod before Pass 1 (OPT-776)
+Information: Ungrouping hierarchy vector before Pass 1 (OPT-776)
+Information: Ungrouping hierarchy muxMod before Pass 1 (OPT-776)
+Information: Ungrouping hierarchy datapathMod0 before Pass 1 (OPT-776)
+Information: Ungrouping hierarchy datapathMod1 before Pass 1 (OPT-776)
+Information: Ungrouping hierarchy datapathMod2 before Pass 1 (OPT-776)
+Information: Ungrouping hierarchy datapathMod3 before Pass 1 (OPT-776)
+Information: Ungrouping hierarchy datapathMod4 before Pass 1 (OPT-776)
+Information: Ungrouping hierarchy datapathMod5 before Pass 1 (OPT-776)
+Information: Ungrouping hierarchy datapathMod6 before Pass 1 (OPT-776)
+Information: Ungrouping hierarchy datapathMod7 before Pass 1 (OPT-776)
+Information: Ungrouping 11 of 13 hierarchies before Pass 1 (OPT-775)
+Information: State dependent leakage is now switched from on to off.
+
+  Beginning Pass 1 Mapping
+  ------------------------
+  Processing 'fc_16_8_16_1_8_W_rom'
+Information: In design 'fc_16_8_16_1_8_W_rom', the register 'z7_reg[8]' is removed because it is merged to 'z7_reg[7]'. (OPT-1215)
+Information: In design 'fc_16_8_16_1_8_W_rom', the register 'z7_reg[9]' is removed because it is merged to 'z7_reg[7]'. (OPT-1215)
+Information: In design 'fc_16_8_16_1_8_W_rom', the register 'z7_reg[10]' is removed because it is merged to 'z7_reg[7]'. (OPT-1215)
+Information: In design 'fc_16_8_16_1_8_W_rom', the register 'z7_reg[11]' is removed because it is merged to 'z7_reg[7]'. (OPT-1215)
+Information: In design 'fc_16_8_16_1_8_W_rom', the register 'z7_reg[12]' is removed because it is merged to 'z7_reg[7]'. (OPT-1215)
+Information: In design 'fc_16_8_16_1_8_W_rom', the register 'z7_reg[13]' is removed because it is merged to 'z7_reg[7]'. (OPT-1215)
+Information: In design 'fc_16_8_16_1_8_W_rom', the register 'z7_reg[14]' is removed because it is merged to 'z7_reg[7]'. (OPT-1215)
+Information: In design 'fc_16_8_16_1_8_W_rom', the register 'z7_reg[15]' is removed because it is merged to 'z7_reg[7]'. (OPT-1215)
+Information: In design 'fc_16_8_16_1_8_W_rom', the register 'z6_reg[8]' is removed because it is merged to 'z6_reg[7]'. (OPT-1215)
+Information: In design 'fc_16_8_16_1_8_W_rom', the register 'z6_reg[9]' is removed because it is merged to 'z6_reg[7]'. (OPT-1215)
+Information: In design 'fc_16_8_16_1_8_W_rom', the register 'z6_reg[10]' is removed because it is merged to 'z6_reg[7]'. (OPT-1215)
+Information: In design 'fc_16_8_16_1_8_W_rom', the register 'z6_reg[11]' is removed because it is merged to 'z6_reg[7]'. (OPT-1215)
+Information: In design 'fc_16_8_16_1_8_W_rom', the register 'z6_reg[12]' is removed because it is merged to 'z6_reg[7]'. (OPT-1215)
+Information: In design 'fc_16_8_16_1_8_W_rom', the register 'z6_reg[13]' is removed because it is merged to 'z6_reg[7]'. (OPT-1215)
+Information: In design 'fc_16_8_16_1_8_W_rom', the register 'z6_reg[14]' is removed because it is merged to 'z6_reg[7]'. (OPT-1215)
+Information: In design 'fc_16_8_16_1_8_W_rom', the register 'z6_reg[15]' is removed because it is merged to 'z6_reg[7]'. (OPT-1215)
+Information: In design 'fc_16_8_16_1_8_W_rom', the register 'z5_reg[8]' is removed because it is merged to 'z5_reg[7]'. (OPT-1215)
+Information: In design 'fc_16_8_16_1_8_W_rom', the register 'z5_reg[9]' is removed because it is merged to 'z5_reg[7]'. (OPT-1215)
+Information: In design 'fc_16_8_16_1_8_W_rom', the register 'z5_reg[10]' is removed because it is merged to 'z5_reg[7]'. (OPT-1215)
+Information: In design 'fc_16_8_16_1_8_W_rom', the register 'z5_reg[11]' is removed because it is merged to 'z5_reg[7]'. (OPT-1215)
+Information: In design 'fc_16_8_16_1_8_W_rom', the register 'z5_reg[12]' is removed because it is merged to 'z5_reg[7]'. (OPT-1215)
+Information: In design 'fc_16_8_16_1_8_W_rom', the register 'z5_reg[13]' is removed because it is merged to 'z5_reg[7]'. (OPT-1215)
+Information: In design 'fc_16_8_16_1_8_W_rom', the register 'z5_reg[14]' is removed because it is merged to 'z5_reg[7]'. (OPT-1215)
+Information: In design 'fc_16_8_16_1_8_W_rom', the register 'z5_reg[15]' is removed because it is merged to 'z5_reg[7]'. (OPT-1215)
+Information: In design 'fc_16_8_16_1_8_W_rom', the register 'z4_reg[8]' is removed because it is merged to 'z4_reg[7]'. (OPT-1215)
+Information: In design 'fc_16_8_16_1_8_W_rom', the register 'z4_reg[9]' is removed because it is merged to 'z4_reg[7]'. (OPT-1215)
+Information: In design 'fc_16_8_16_1_8_W_rom', the register 'z4_reg[10]' is removed because it is merged to 'z4_reg[7]'. (OPT-1215)
+Information: In design 'fc_16_8_16_1_8_W_rom', the register 'z4_reg[11]' is removed because it is merged to 'z4_reg[7]'. (OPT-1215)
+Information: In design 'fc_16_8_16_1_8_W_rom', the register 'z4_reg[12]' is removed because it is merged to 'z4_reg[7]'. (OPT-1215)
+Information: In design 'fc_16_8_16_1_8_W_rom', the register 'z4_reg[13]' is removed because it is merged to 'z4_reg[7]'. (OPT-1215)
+Information: In design 'fc_16_8_16_1_8_W_rom', the register 'z4_reg[14]' is removed because it is merged to 'z4_reg[7]'. (OPT-1215)
+Information: In design 'fc_16_8_16_1_8_W_rom', the register 'z4_reg[15]' is removed because it is merged to 'z4_reg[7]'. (OPT-1215)
+Information: In design 'fc_16_8_16_1_8_W_rom', the register 'z3_reg[8]' is removed because it is merged to 'z3_reg[7]'. (OPT-1215)
+Information: In design 'fc_16_8_16_1_8_W_rom', the register 'z3_reg[9]' is removed because it is merged to 'z3_reg[7]'. (OPT-1215)
+Information: In design 'fc_16_8_16_1_8_W_rom', the register 'z3_reg[10]' is removed because it is merged to 'z3_reg[7]'. (OPT-1215)
+Information: In design 'fc_16_8_16_1_8_W_rom', the register 'z3_reg[11]' is removed because it is merged to 'z3_reg[7]'. (OPT-1215)
+Information: In design 'fc_16_8_16_1_8_W_rom', the register 'z3_reg[12]' is removed because it is merged to 'z3_reg[7]'. (OPT-1215)
+Information: In design 'fc_16_8_16_1_8_W_rom', the register 'z3_reg[13]' is removed because it is merged to 'z3_reg[7]'. (OPT-1215)
+Information: In design 'fc_16_8_16_1_8_W_rom', the register 'z3_reg[14]' is removed because it is merged to 'z3_reg[7]'. (OPT-1215)
+Information: In design 'fc_16_8_16_1_8_W_rom', the register 'z3_reg[15]' is removed because it is merged to 'z3_reg[7]'. (OPT-1215)
+Information: In design 'fc_16_8_16_1_8_W_rom', the register 'z2_reg[8]' is removed because it is merged to 'z2_reg[7]'. (OPT-1215)
+Information: In design 'fc_16_8_16_1_8_W_rom', the register 'z2_reg[9]' is removed because it is merged to 'z2_reg[7]'. (OPT-1215)
+Information: In design 'fc_16_8_16_1_8_W_rom', the register 'z2_reg[10]' is removed because it is merged to 'z2_reg[7]'. (OPT-1215)
+Information: In design 'fc_16_8_16_1_8_W_rom', the register 'z2_reg[11]' is removed because it is merged to 'z2_reg[7]'. (OPT-1215)
+Information: In design 'fc_16_8_16_1_8_W_rom', the register 'z2_reg[12]' is removed because it is merged to 'z2_reg[7]'. (OPT-1215)
+Information: In design 'fc_16_8_16_1_8_W_rom', the register 'z2_reg[13]' is removed because it is merged to 'z2_reg[7]'. (OPT-1215)
+Information: In design 'fc_16_8_16_1_8_W_rom', the register 'z2_reg[14]' is removed because it is merged to 'z2_reg[7]'. (OPT-1215)
+Information: In design 'fc_16_8_16_1_8_W_rom', the register 'z2_reg[15]' is removed because it is merged to 'z2_reg[7]'. (OPT-1215)
+Information: In design 'fc_16_8_16_1_8_W_rom', the register 'z1_reg[8]' is removed because it is merged to 'z1_reg[7]'. (OPT-1215)
+Information: In design 'fc_16_8_16_1_8_W_rom', the register 'z1_reg[9]' is removed because it is merged to 'z1_reg[7]'. (OPT-1215)
+Information: In design 'fc_16_8_16_1_8_W_rom', the register 'z1_reg[10]' is removed because it is merged to 'z1_reg[7]'. (OPT-1215)
+Information: In design 'fc_16_8_16_1_8_W_rom', the register 'z1_reg[11]' is removed because it is merged to 'z1_reg[7]'. (OPT-1215)
+Information: In design 'fc_16_8_16_1_8_W_rom', the register 'z1_reg[12]' is removed because it is merged to 'z1_reg[7]'. (OPT-1215)
+Information: In design 'fc_16_8_16_1_8_W_rom', the register 'z1_reg[13]' is removed because it is merged to 'z1_reg[7]'. (OPT-1215)
+Information: In design 'fc_16_8_16_1_8_W_rom', the register 'z1_reg[14]' is removed because it is merged to 'z1_reg[7]'. (OPT-1215)
+Information: In design 'fc_16_8_16_1_8_W_rom', the register 'z1_reg[15]' is removed because it is merged to 'z1_reg[7]'. (OPT-1215)
+Information: In design 'fc_16_8_16_1_8_W_rom', the register 'z0_reg[8]' is removed because it is merged to 'z0_reg[7]'. (OPT-1215)
+Information: In design 'fc_16_8_16_1_8_W_rom', the register 'z0_reg[9]' is removed because it is merged to 'z0_reg[7]'. (OPT-1215)
+Information: In design 'fc_16_8_16_1_8_W_rom', the register 'z0_reg[10]' is removed because it is merged to 'z0_reg[7]'. (OPT-1215)
+Information: In design 'fc_16_8_16_1_8_W_rom', the register 'z0_reg[11]' is removed because it is merged to 'z0_reg[7]'. (OPT-1215)
+Information: In design 'fc_16_8_16_1_8_W_rom', the register 'z0_reg[12]' is removed because it is merged to 'z0_reg[7]'. (OPT-1215)
+Information: In design 'fc_16_8_16_1_8_W_rom', the register 'z0_reg[13]' is removed because it is merged to 'z0_reg[7]'. (OPT-1215)
+Information: In design 'fc_16_8_16_1_8_W_rom', the register 'z0_reg[14]' is removed because it is merged to 'z0_reg[7]'. (OPT-1215)
+Information: In design 'fc_16_8_16_1_8_W_rom', the register 'z0_reg[15]' is removed because it is merged to 'z0_reg[7]'. (OPT-1215)
+ Implement Synthetic for 'fc_16_8_16_1_8_W_rom'.
+  Processing 'fc_16_8_16_1_8'
+Information: Added key list 'DesignWare' to design 'fc_16_8_16_1_8'. (DDB-72)
+Information: The register 'controlMod/currentState_reg[1]' is a constant and will be removed. (OPT-1206)
+ Implement Synthetic for 'fc_16_8_16_1_8'.
+
+  Updating timing information
+Information: Updating design information... (UID-85)
+Information: The register 'datapathMod7/output_data_reg[15]' is a constant and will be removed. (OPT-1206)
+Information: The register 'datapathMod6/output_data_reg[15]' is a constant and will be removed. (OPT-1206)
+Information: The register 'datapathMod5/output_data_reg[15]' is a constant and will be removed. (OPT-1206)
+Information: The register 'datapathMod4/output_data_reg[15]' is a constant and will be removed. (OPT-1206)
+Information: The register 'datapathMod3/output_data_reg[15]' is a constant and will be removed. (OPT-1206)
+Information: The register 'datapathMod2/output_data_reg[15]' is a constant and will be removed. (OPT-1206)
+Information: The register 'datapathMod1/output_data_reg[15]' is a constant and will be removed. (OPT-1206)
+Information: The register 'datapathMod0/output_data_reg[15]' is a constant and will be removed. (OPT-1206)
+
+  Beginning Mapping Optimizations  (Ultra High effort)
+  -------------------------------
+  Mapping Optimization (Phase 1)
+
+                                  TOTAL                                                
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:00:54   13054.5      0.49      54.9      89.1                           328970.4375
+    0:00:54   13042.5      0.49      54.9      89.1                           328539.8438
+    0:00:54   13042.5      0.49      54.9      89.1                           328539.8438
+    0:00:54   13037.7      0.49      54.9      87.7                           328392.6562
+  Re-synthesis Optimization (Phase 1)
+  Re-synthesis Optimization (Phase 2)
+  Global Optimization (Phase 1)
+  Global Optimization (Phase 2)
+  Global Optimization (Phase 3)
+  Global Optimization (Phase 4)
+  Global Optimization (Phase 5)
+  Global Optimization (Phase 6)
+  Global Optimization (Phase 7)
+  Global Optimization (Phase 8)
+  Global Optimization (Phase 9)
+  Global Optimization (Phase 10)
+  Global Optimization (Phase 11)
+  Global Optimization (Phase 12)
+  Global Optimization (Phase 13)
+  Global Optimization (Phase 14)
+  Global Optimization (Phase 15)
+  Global Optimization (Phase 16)
+  Global Optimization (Phase 17)
+  Global Optimization (Phase 18)
+  Global Optimization (Phase 19)
+  Global Optimization (Phase 20)
+  Global Optimization (Phase 21)
+  Global Optimization (Phase 22)
+  Global Optimization (Phase 23)
+  Global Optimization (Phase 24)
+  Global Optimization (Phase 25)
+  Global Optimization (Phase 26)
+  Global Optimization (Phase 27)
+  Global Optimization (Phase 28)
+  Global Optimization (Phase 29)
+  Global Optimization (Phase 30)
+  Global Optimization (Phase 31)
+  Mapping 'fc_16_8_16_1_8_DP_OP_233J2_130_7466_3'
+  Mapping 'fc_16_8_16_1_8_DP_OP_234J2_131_6791_3'
+    0:01:11   10318.9      0.22      28.2      32.1                           228022.9844
+
+
+
+  Beginning Delay Optimization Phase
+  ----------------------------------
+
+                                  TOTAL                                                
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:01:11   10318.9      0.22      28.2      32.1                           228022.9844
+    0:01:11   10318.9      0.22      28.2      32.1                           228022.9844
+    0:01:11   10321.6      0.22      28.3      32.1                           228089.6094
+    0:01:11   10321.6      0.22      28.3      32.1                           228089.6094
+    0:01:15   10446.9      0.18      23.6      32.1                           231769.1719
+    0:01:15   10446.9      0.18      23.6      32.1                           231769.1719
+    0:01:15   10447.4      0.18      23.5      32.1                           231785.4688
+    0:01:15   10447.4      0.18      23.5      32.1                           231785.4688
+    0:01:17   10474.3      0.17      22.9      32.1                           232571.6094
+    0:01:17   10474.3      0.17      22.9      32.1                           232571.6094
+    0:01:22   10716.3      0.11      14.5      30.7                           241052.1875
+    0:01:22   10716.3      0.11      14.5      30.7                           241052.1875
+    0:01:29   10790.8      0.10      12.8      29.4                           243332.2188
+
+  Beginning Delay Optimization
+  ----------------------------
+    0:01:29   10791.9      0.10      12.8      29.4                           243339.2969
+    0:01:31   10860.8      0.09      11.6      29.4                           246066.9531
+    0:01:31   10860.8      0.09      11.6      29.4                           246066.9531
+    0:01:35   10882.9      0.09      11.2      29.4                           246598.8438
+    0:01:35   10882.9      0.09      11.1      29.4                           246598.8438
+    0:01:36   10939.0      0.08      10.3      55.0                           248667.3906
+    0:01:36   10939.0      0.08      10.3      55.0                           248667.3906
+    0:01:37   10973.6      0.08      10.2      55.0                           249733.8906
+
+
+  Beginning Design Rule Fixing  (max_transition)  (max_capacitance)
+  ----------------------------
+
+                                  TOTAL                                                
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:01:37   10973.6      0.08      10.2      55.0                           249733.8906
+  Global Optimization (Phase 32)
+  Global Optimization (Phase 33)
+  Global Optimization (Phase 34)
+    0:01:38   10936.9      0.07       8.0       0.0 datapathMod5/result_reg[8]/D 248210.0938
+    0:01:39   10951.2      0.06       7.3       0.0                           248492.8125
+    0:01:45   11007.3      0.05       6.8       0.0                           250212.0156
+
+                                  TOTAL                                                
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:01:45   11007.3      0.05       6.8       0.0                           250212.0156
+    0:01:46   11012.4      0.05       6.9       0.0                           250297.8438
+
+
+  Beginning Leakage Power Optimization  (max_leakage_power 0)
+  ------------------------------------
+
+                                  TOTAL                                                
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:01:47   10990.1      0.05       6.8       0.0                           249738.4531
+  Global Optimization (Phase 35)
+  Global Optimization (Phase 36)
+  Global Optimization (Phase 37)
+  Global Optimization (Phase 38)
+  Global Optimization (Phase 39)
+  Global Optimization (Phase 40)
+  Global Optimization (Phase 41)
+  Global Optimization (Phase 42)
+  Global Optimization (Phase 43)
+  Global Optimization (Phase 44)
+  Global Optimization (Phase 45)
+  Global Optimization (Phase 46)
+  Global Optimization (Phase 47)
+  Global Optimization (Phase 48)
+  Global Optimization (Phase 49)
+  Global Optimization (Phase 50)
+  Global Optimization (Phase 51)
+  Global Optimization (Phase 52)
+  Global Optimization (Phase 53)
+  Global Optimization (Phase 54)
+  Global Optimization (Phase 55)
+  Global Optimization (Phase 56)
+  Global Optimization (Phase 57)
+  Global Optimization (Phase 58)
+    0:01:55   10819.5      0.00       0.0       0.0                           239756.4219
+    0:01:55   10819.5      0.00       0.0       0.0                           239756.4219
+    0:01:55   10819.5      0.00       0.0       0.0                           239756.4219
+    0:01:55   10819.3      0.00       0.0       0.0                           239690.5312
+    0:01:55   10819.3      0.00       0.0       0.0                           239690.5312
+    0:01:55   10819.3      0.00       0.0       0.0                           239690.5312
+    0:01:55   10819.3      0.00       0.0       0.0                           239690.5312
+    0:01:55   10819.3      0.00       0.0       0.0                           239690.5312
+    0:01:55   10819.3      0.00       0.0       0.0                           239690.5312
+    0:01:55   10819.3      0.00       0.0       0.0                           239690.5312
+    0:01:55   10819.3      0.00       0.0       0.0                           239690.5312
+    0:01:55   10819.3      0.00       0.0       0.0                           239690.5312
+    0:01:55   10819.3      0.00       0.0       0.0                           239690.5312
+    0:01:55   10819.3      0.00       0.0       0.0                           239690.5312
+    0:01:55   10819.3      0.00       0.0       0.0                           239690.5312
+    0:01:55   10819.3      0.00       0.0       0.0                           239690.5312
+    0:01:55   10819.3      0.00       0.0       0.0                           239690.5312
+    0:01:55   10819.3      0.00       0.0       0.0                           239690.5312
+    0:01:55   10819.3      0.00       0.0       0.0                           239690.5312
+    0:01:55   10819.3      0.00       0.0       0.0                           239690.5312
+    0:01:55   10819.3      0.00       0.0       0.0                           239690.5312
+    0:01:55   10819.3      0.00       0.0       0.0                           239690.5312
+
+                                  TOTAL                                                
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:01:55   10819.3      0.00       0.0       0.0                           239690.5312
+    0:01:56   10723.3      0.01       0.7       0.0                           235610.8750
+    0:01:56   10729.9      0.01       0.3       0.0                           236034.4688
+    0:01:56   10729.9      0.01       0.3       0.0                           236034.4688
+    0:01:57   10735.8      0.01       0.3       0.0                           236634.5156
+    0:01:57   10707.0      0.01       0.3       0.0                           235743.9375
+    0:01:58   10773.8      0.00       0.0       0.0                           238504.4375
+    0:01:59   10732.8      0.00       0.0       0.0                           236483.5469
+Loading db file '/home/home4/pmilder/ese507/synthesis/lib/NangateOpenCellLibrary_typical.db'
+
+
+Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
+
+
+  Optimization Complete
+  ---------------------
+Information: State dependent leakage is now switched from off to on.
+Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
+1
+report_area
+ 
+****************************************
+Report : area
+Design : fc_16_8_16_1_8
+Version: J-2014.09-SP5-2
+Date   : Tue Dec  1 10:30:38 2020
+****************************************
+
+Information: Updating design information... (UID-85)
+Library(s) Used:
+
+    NangateOpenCellLibrary (File: /home/home4/pmilder/ese507/synthesis/lib/NangateOpenCellLibrary_typical.db)
+
+Number of ports:                           38
+Number of nets:                          6933
+Number of cells:                         6457
+Number of combinational cells:           6021
+Number of sequential cells:               435
+Number of macros/black boxes:               0
+Number of buf/inv:                        917
+Number of references:                      45
+
+Combinational area:               8469.706006
+Buf/Inv area:                      729.372004
+Noncombinational area:            2263.127919
+Macro/Black Box area:                0.000000
+Net Interconnect area:      undefined  (Wire load has zero net area)
+
+Total cell area:                 10732.833925
+Total area:                 undefined
+1
+report_power
+ 
+****************************************
+Report : power
+        -analysis_effort low
+Design : fc_16_8_16_1_8
+Version: J-2014.09-SP5-2
+Date   : Tue Dec  1 10:30:38 2020
+****************************************
+
+
+Library(s) Used:
+
+    NangateOpenCellLibrary (File: /home/home4/pmilder/ese507/synthesis/lib/NangateOpenCellLibrary_typical.db)
+
+
+Operating Conditions: typical   Library: NangateOpenCellLibrary
+Wire Load Model Mode: top
+
+Design        Wire Load Model            Library
+------------------------------------------------
+fc_16_8_16_1_8         5K_hvratio_1_1    NangateOpenCellLibrary
+
+
+Global Operating Voltage = 1.1  
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000ff
+    Time Units = 1ns
+    Dynamic Power Units = 1uW    (derived from V,C,T units)
+    Leakage Power Units = 1nW
+
+
+  Cell Internal Power  =   3.0502 mW   (71%)
+  Net Switching Power  =   1.2670 mW   (29%)
+                         ---------
+Total Dynamic Power    =   4.3172 mW  (100%)
+
+Cell Leakage Power     = 251.6772 uW
+
+
+                 Internal         Switching           Leakage            Total
+Power Group      Power            Power               Power              Power   (   %    )  Attrs
+--------------------------------------------------------------------------------------------------
+io_pad             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
+clock_network      0.0000            0.0000            0.0000            0.0000  (   0.00%)
+register       2.0431e+03           80.3895        3.9278e+04        2.1628e+03  (  47.34%)
+sequential         0.0000            0.0000            0.0000            0.0000  (   0.00%)
+combinational  1.0071e+03        1.1866e+03        2.1240e+05        2.4062e+03  (  52.66%)
+--------------------------------------------------------------------------------------------------
+Total          3.0502e+03 uW     1.2670e+03 uW     2.5168e+05 nW     4.5689e+03 uW
+1
+report_timing
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : fc_16_8_16_1_8
+Version: J-2014.09-SP5-2
+Date   : Tue Dec  1 10:30:38 2020
+****************************************
+
+Operating Conditions: typical   Library: NangateOpenCellLibrary
+Wire Load Model Mode: top
+
+  Startpoint: matrixRom/z4_reg[5]
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: datapathMod4/result_reg[16]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fc_16_8_16_1_8     5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  matrixRom/z4_reg[5]/CK (DFF_X1)                         0.00       0.00 r
+  matrixRom/z4_reg[5]/Q (DFF_X1)                          0.10       0.10 r
+  matrixRom/z4[5] (fc_16_8_16_1_8_W_rom)                  0.00       0.10 r
+  U3427/Z (BUF_X4)                                        0.08       0.18 r
+  U3448/ZN (XNOR2_X1)                                     0.08       0.26 r
+  U1501/ZN (OAI22_X1)                                     0.04       0.30 f
+  U3476/CO (FA_X1)                                        0.11       0.41 f
+  U3486/ZN (XNOR2_X1)                                     0.06       0.47 f
+  U3487/ZN (XNOR2_X1)                                     0.06       0.54 f
+  U2378/ZN (NOR2_X1)                                      0.05       0.59 r
+  U3492/ZN (NOR2_X1)                                      0.03       0.61 f
+  U3536/ZN (NAND2_X1)                                     0.03       0.64 r
+  U1863/ZN (NAND2_X1)                                     0.04       0.68 f
+  U3565/ZN (NAND2_X1)                                     0.04       0.72 r
+  U3567/ZN (NAND2_X1)                                     0.03       0.75 f
+  U3569/ZN (XNOR2_X1)                                     0.06       0.80 f
+  U2043/ZN (OR2_X1)                                       0.06       0.87 f
+  U3576/ZN (NAND2_X1)                                     0.03       0.90 r
+  U3578/ZN (NAND2_X1)                                     0.03       0.93 f
+  U3580/ZN (AOI21_X1)                                     0.05       0.98 r
+  U3644/ZN (NAND2_X1)                                     0.04       1.01 f
+  U3666/ZN (AOI21_X1)                                     0.06       1.07 r
+  U3722/ZN (OAI21_X1)                                     0.04       1.11 f
+  U3747/ZN (XNOR2_X1)                                     0.06       1.16 f
+  U3812/ZN (NAND2_X1)                                     0.03       1.19 r
+  U3831/ZN (NAND3_X1)                                     0.03       1.22 f
+  datapathMod4/result_reg[16]/D (DFF_X1)                  0.01       1.23 f
+  data arrival time                                                  1.23
+
+  clock clk (rise edge)                                   1.27       1.27
+  clock network delay (ideal)                             0.00       1.27
+  datapathMod4/result_reg[16]/CK (DFF_X1)                 0.00       1.27 r
+  library setup time                                     -0.04       1.23
+  data required time                                                 1.23
+  --------------------------------------------------------------------------
+  data required time                                                 1.23
+  data arrival time                                                 -1.23
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+1
+write -f verilog $TOP_MOD_NAME -output gates.v -hierarchy
+Writing verilog file '/home/home5/aiqbal/ese507work/Project3/proj3_part2/gates.v'.
+Warning: Verilog writer has added 56 nets to module fc_16_8_16_1_8 using SYNOPSYS_UNCONNECTED_ as prefix.  Please use the change_names command to make the correct changes before invoking the verilog writer.  (VO-11)
+Warning: Verilog 'assign' or 'tran' statements are written out. (VO-4)
+1
+quit
+
+Thank you...
